@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
-// import { useGetCardsQuery } from "../redux/AllApi";
 import om1 from "/mnsadhikrut-banner-04.jpg";
 import om2 from "/raj-thackeray-sabha-pic1-e1626091623289.jpg";
 import om3 from "/MG_5805-1-scaled-e1594411061318.jpg"
@@ -48,7 +47,6 @@ const slides = [
 
 const HeroSection = () => {
 
-  // const { data: slides, error, isLoading } = useGetCardsQuery();
 
   const [current, setCurrent] = useState(0);
 
