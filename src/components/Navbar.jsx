@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logo from "../assets/MNS-flag-rajmudra-logo.png";
+import mobilelogo from "../assets/MNS-flag-rajmudra-logo.png";
+import logo from "../assets/MNS-flag-rajmudra.png";
 import wallBorder from "../assets/wall-border-40x35-icon.png";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +17,6 @@ const Navbar = () => {
       window.open("https://manse-admin.onrender.com", "_blank"); // Opens in new tab
     }
   };
-
-
 
   const navItems = [
     {
@@ -77,7 +76,7 @@ const Navbar = () => {
         <div className="flex md:hidden justify-between items-center w-full px-4 py-2">
           <div className="flex items-center gap-2">
             <img
-              src={logo}
+              src={mobilelogo}
               alt="MNS Logo"
               className="h-[45px] w-auto object-contain"
             />

@@ -22,11 +22,14 @@ export const AllApi = createApi({
       }),
       invalidatesTags: ['Complaint'], // invalidate if you want to refetch
     }),
+    getHeroSlides: builder.query({
+      query: () => "api/herodata", // this hits /api/herodata/slides
+    }),
   }),
 });
 
 export const {
   // useGetNavbarQuery,
-  // useGetCardsQuery,
   useSubmitComplaintMutation,   // hook for the mutation
+  useGetHeroSlidesQuery,
 } = AllApi;
