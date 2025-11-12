@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const allApi = createApi({
-  reducerPath: 'allApi',
+export const AllApi = createApi({
+  reducerPath: 'AllApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:5000',
   }),
@@ -29,4 +29,4 @@ export const {
   // useGetNavbarQuery,
   // useGetCardsQuery,
   useSubmitComplaintMutation,   // hook for the mutation
-} = allApi;
+} = AllApi;
