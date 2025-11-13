@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { useGetHeroSlidesQuery } from "../redux/allApi"; 
-import a from "/337153044_174537195432675_6885634445090099425_n.jpg";
-import o from "/gudhipadwa-melava-design-2024-v7.png";
-import K from "/raj-thackeray-speech-pic.jpg";
-import L from "/mns-symbol-railway-engine-white.png";
+import { useGetHeroSlidesQuery } from "../redux/allApi"; // ✅ your RTK endpoint
 
 const HeroSection = () => {
   // ✅ Fetch slides data from backend
@@ -14,11 +10,11 @@ const HeroSection = () => {
   // ✅ Safe fallback (avoid undefined errors)
   const slides = data?.find(item => item.type === 'slides')?.data || [];
   const cards = data?.find(item => item.type === 'cards')?.data || [];
+  const heroRemaining = data?.find(item => item.type === 'heroRemaining')?.data?.[0] || {};
 
   const [current, setCurrent] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
- 
   // ✅ Auto-slide cards
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,6 +31,7 @@ const HeroSection = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [slides.length]);
+
 
   // ✅ Handle loading/error
   if (isLoading) return <p className="text-white text-center py-10">Loading slides…</p>;
@@ -145,99 +142,74 @@ const HeroSection = () => {
         </div>
       </section>
 
-
-      <section className="bg-[#f5f5f5] md:py-12 px-4 sm:px-10 md:px-20 lg:px-40">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#f47c20] text-center mb-2">
-            महाराष्ट्र नवनिर्माण सेनेचं स्मृतिगीत
-          </h2>
-          <div className="w-16 sm:w-20 h-1 bg-[#f47c20] mx-auto mb-8"></div>
-
-          {/* Responsive container */}
-          <div className="flex flex-col md:flex-row items-center bg-[#f47c20] rounded-2xl md:rounded-3xl overflow-hidden shadow-lg">
-            {/* Image section */}
-            <div className="w-full md:w-1/3">
-              <img
-                src={a}
-                alt="anthem image"
-                className="object-cover w-full h-full md:h-auto"
-              />
-            </div>
-
-            {/* Text + Audio section */}
-            <div className="w-full md:w-2/3 p-5 sm:p-8 text-white flex flex-col justify-center text-center md:text-left">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4">
-                नवनिर्माण घडवूया !
-              </h3>
-
-              <audio
-                src={a}
-                controls
-                className="w-full mb-4 rounded-md"
-              />
-            </div>
-          </div>
-
-          {/* Download Button */}
-          <div className="flex justify-center mt-8">
-            <a
-              download
-              className="border-2 border-[#f47c20] text-[#f47c20] px-6 py-2 sm:px-8 sm:py-3 rounded-full font-normal text-base hover:bg-[#f47c20] hover:text-white transition"
-            >
-              संकलित करा (Download)
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-gray-100 pb-20">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-[#f47c20] mb-4">
-            पुढील कार्यक्रम
-          </h2>
-          <div className="w-20 h-1 bg-[#f47c20] mx-auto mb-8"></div>
-          <img
-            src={o}
-            alt="वर्णन इथे"
-            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
-          />
-        </div>
-      </section>
-
-      <section className="w-full ">
-        <div className="relative w-full">
-          <img
-            src={K}
-            alt="Section Background"
-            className="w-full object-cover h-64"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-            <img
-              src={L}
-              alt="Logo"
-              className="w-20 mb-4"
-            />
-            <h2 className="text-xl font-bold mb-2">
-              महाराष्ट्र नवनिर्माण सेनेची अधिकृत सामाजिक माध्यमं
+      {heroRemaining.anthem && (
+        <section className="bg-[#f5f5f5] md:py-12 px-4 sm:px-10 md:px-20 lg:px-40">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#f47c20] text-center mb-2">
+              {heroRemaining.anthem.title}
             </h2>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="bg-[#f47c20] hover:bg-orange-600 p-3 rounded-full transition">
-                <FaFacebookF className="w-4 h-4 text-white" />
-              </a>
-              <a href="#" className="bg-[#f47c20] hover:bg-orange-600 p-3 rounded-full transition">
-                <FaTwitter className="w-4 h-4 text-white" />
-              </a>
-              <a href="#" className="bg-[#f47c20] hover:bg-orange-600 p-3 rounded-full transition">
-                <FaInstagram className="w-4 h-4 text-white" />
-              </a>
-              <a href="#" className="bg-[#f47c20] hover:bg-orange-600 p-3 rounded-full transition">
-                <FaYoutube className="w-4 h-4 text-white" />
-              </a>
+            <div className="w-16 sm:w-20 h-1 bg-[#f47c20] mx-auto mb-8"></div>
+
+            <div className="flex flex-col md:flex-row items-center bg-[#f47c20] rounded-2xl md:rounded-3xl overflow-hidden shadow-lg">
+              <div className="w-full md:w-1/3">
+                <img
+                  src={heroRemaining.anthem.img}
+                  alt={heroRemaining.anthem.title}
+                  className="object-cover w-full h-full md:h-auto"
+                />
+              </div>
+              <div className="w-full md:w-2/3 p-5 sm:p-8 text-white flex flex-col justify-center text-center md:text-left">
+                <audio
+                  src={heroRemaining.anthem.audio}
+                  controls
+                  className="w-full mb-4 rounded-md"
+                />
+              </div>
             </div>
 
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* UPCOMING EVENT */}
+      {heroRemaining.upcomingEvent && (
+        <section className="py-12 bg-gray-100 pb-20">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold text-[#f47c20] mb-4">
+              {heroRemaining.upcomingEvent.title}
+            </h2>
+            <div className="w-20 h-1 bg-[#f47c20] mx-auto mb-8"></div>
+            <img
+              src={heroRemaining.upcomingEvent.img}
+              alt={heroRemaining.upcomingEvent.desc}
+              className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+            />
+          </div>
+        </section>
+      )}
+
+      {/* FOOTER SECTION */}
+      {heroRemaining.footer && (
+        <section className="w-full">
+          <div className="relative w-full">
+            <img
+              src={heroRemaining.footer.background}
+              alt="Section Background"
+              className="w-full object-cover h-64"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+              <img
+                src={heroRemaining.footer.logo}
+                alt="Logo"
+                className="w-20 mb-4"
+              />
+              <h2 className="text-xl font-bold mb-2">
+                {heroRemaining.footer.text}
+              </h2>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 };
