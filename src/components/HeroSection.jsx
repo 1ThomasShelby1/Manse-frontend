@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { useGetHeroSlidesQuery } from "../redux/allApi"; // ✅ your RTK endpoint
+import { useGetHeroSlidesQuery } from "../redux/AllApi"; // ✅ your RTK endpoint
 
 const HeroSection = () => {
   // ✅ Fetch slides data from backend
