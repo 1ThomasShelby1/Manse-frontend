@@ -12,13 +12,21 @@ const Navbar = () => {
 
   const handleNavigation = (link) => {
     if (link === "तक्रार करा") {
-      navigate("/complaint"); // Internal navigation
-    } else if (link === "अॅडमिन लॉगिन") {
-      window.open("https://manse-admin.onrender.com", "_blank"); // Opens in new tab
+      navigate("/complaint");
+    }
+    else if (link === "निदर्शने/आंदोलने") {
+      navigate("/events");   // 👉 Navigate to Event.jsx page
+    }
+    else if (link === "अॅडमिन लॉगिन") {
+      window.open("https://manse-admin.onrender.com", "_blank");
     }
   };
 
+
   const navItems = [
+    {
+      label: "मुखपृष्ठ",
+    },
     {
       label: "आमच्याविषयी",
       dropdown: true,
@@ -27,7 +35,7 @@ const Navbar = () => {
     {
       label: "पक्ष कार्य",
       dropdown: true,
-      links: ["निवेदने/आंदोलने", "प्रसारमाध्यमांद्‌वारे दखल", "ई-लाइब्ररी"],
+      links: ["निवेदने", "निदर्शने/आंदोलने", "प्रसारमाध्यमांद्‌वारे दखल", "ई-लाइब्ररी"],
     },
     {
       label: "संघटना",
